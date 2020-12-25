@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+* {
+  user-select: none;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  flex-direction: row;
+  height: 100vh;
+  align-content: center;
+}
+
+#main-content {
+  position: relative;
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 998;
+}
+
+#main-content.on-search #server-info {
+  display: none;
+}
+
+#main-content.on-result #server-info {
+  display: flex;
+  flex-wrap: wrap;
+  display: flex;
+  width: 85vw;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  align-content: center;
+  padding: 5vw;
+}
+
+#main-content.on-result #video-img {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+}
+
+#main-content.on-result #video-info {
+  width: 30vw;
+  background-color: rgba(200, 200, 200, .1);
+  padding: 0.6em 4em;
+}
+
+#main-content.on-result #video-info ul {
+  list-style: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content.on-result #video-info li {
+  list-style: none;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  margin: 1rem 0;
+}
+
+#author, #title {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+}
+
+#title {
+  font-style: italic;
+  font-size: 18px;
+}
+
+li.desc {
+  max-height: 17vh;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+li.desc::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+li.desc::-webkit-scrollbar-thumb {
+  background: #030303;
+  border-radius: 2px;
+}
+
+#description {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  line-height: 2;
+}
+
+#main-content.on-result #server-info button {
+  border-radius: 0 !important;
+  color: #393939;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  border: 1px dashed grey;
+  background-color: white;
+  outline: none;
+  padding: 1em 0;
+}
+
+#main-content.on-result #server-info button:hover {
+  cursor: pointer;
+}
+
+#main-content.on-result #server-info button:active {
+  transform: translateY(-2px);
+  border: none;
+}
+
+#thumbnail {
+  max-width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+}
+
+#search-row {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+}
+
+#search-row #_form {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+}
+
+#main-content.on-search #_form {
+  flex-direction: row;
+  width: 55vw;
+}
+
+#main-content.on-result #_form {
+  height: 10.5vh;
+  width: 45vw;
+}
+
+input[type="text"] {
+  position: relative;
+  border: 1px solid black;
+  outline: none;
+  padding: 0.9em 1.2em;
+  border-radius: 0 !important;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  color: #494949;
+}
+
+#main-content.on-search input[type="text"] {
+  font-size: 10px;
+  width: 40vw;
+}
+
+#main-content.on-result input[type="text"] {
+  font-size: 9px;
+  width: 35vw;
+}
+
+#main-content.on-search input[type="text"]:focus, #main-content.on-search input[type="text"]:active {
+  border: 2px solid black;
+  padding: .9em 1em;
+}
+
+#main-content.on-result input[type="text"]:focus, #main-content.on-result input[type="text"]:active {
+  border: 0;
+  outline: 2px solid black;
+}
+
+input[type="text"]::selection {
+  color: white;
+  background: red;
+}
+
+input[type="submit"] {
+  position: relative;
+  border: 1px solid black;
+  background-color: white;
+  outline: none;
+  color: black;
+  font-weight: bold;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#main-content.on-search input[type="submit"] {
+  padding: 0.6em 4em;
+}
+
+#main-content.on-result input[type="submit"] {
+  padding: 0.5em 2em
+}
+
+input[type="submit"]:hover {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.bg-img {
+  position: relative;
+  width: 115vw;
+  height: 115vh;
+  max-width: 115vw;
+  max-height: 115vh;
+  -webkit-user-drag: none;
+}
+
+.bg-container {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 106vw;
+  height: 115vh;
+  max-width: 106vw;
+  max-height: 115vh;
+  left: -3vw;
+  top: -10vh;
+  filter: blur(9px) brightness(0.3);
+}
+
+#updater {
+  display: none;
+  background-color: white;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 999;
+}
+
+#updater.updating {
+  display: flex;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #393939;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#coin-case {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 30%;
+  flex-wrap: wrap;
+  align-self: flex-end;
+}
+
+.coin {
+  d: path('M10, 0, 20, 10, 10, 20, 0, 10Z') !important;
+}

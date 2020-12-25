@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>pleshw - Youtube dowloader</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+
+<body>
+  <div class="bg-container">
+    <img class="bg-img" id="bg" src="">
+  </div>
+
+  <main>
+    <section id="main-content" class="on-search">
+
+      <div id="search-row" class="">
+        <form id="_form" method="post" autocomplete="off">
+          <input type="text" id="_url" name="url">
+          <input type="submit" value="Buscar">
+        </form>
+      </div>
+
+      <div id="server-info">
+        <div id="video-img">
+          <img id="thumbnail" src="" alt="">
+          <button>Download</button>
+        </div>
+        <div id="video-info">
+          <ul>
+            <li>
+              <span id="author"></span> <br> <span id="title"></span>
+            </li>
+
+            <li class="desc">
+              <span id="description"></span>
+            </li>
+
+            <li id="coin-case">
+              <svg width="20px" height="20px" viewBox="0 0 20 20">
+                <path class="coin" fill="rgba(255,200,0, 1)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+                <path class="coin" fill="rgba(255,200,0, 0)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+              </svg>
+              <svg width="20px" height="20px" viewBox="0 0 20 20">
+                <path class="coin" fill="rgba(255,200,0, 0)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+              </svg>
+              <svg width="20px" height="20px" viewBox="0 0 20 20">
+                <path class="coin" fill="rgba(255,200,0, 0)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+              </svg>
+              <svg width="20px" height="20px" viewBox="0 0 20 20">
+                <path class="coin" fill="rgba(255,200,0, 0)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+              </svg>
+              <svg width="20px" height="20px" viewBox="0 0 20 20">
+                <path class="coin" fill="rgba(255,200,0, 0)" stroke="rgba(0,0,0,1)" strokeWidth="1" />
+              </svg>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="updater">
+    <h1>
+      <p>
+        searching...
+      </p>
+    </h1>
+  </div>
+
+
+  <script>
+    document.getElementById('_form').addEventListener('submit', e => {
+      e.preventDefault();
+      requestVideo(document.getElementById('_url').value);
+      return false;
+    });
+  </script>
+</body>
+
+</html>
