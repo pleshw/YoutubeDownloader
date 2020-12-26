@@ -41,13 +41,13 @@ main {
   display: flex;
   flex-wrap: wrap;
   display: flex;
-  width: 85vw;
+  width: 94vw;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   align-content: center;
-  padding: 5vw;
+  padding: 3vh 0vw;
 }
 
 #main-content.on-result #video-img {
@@ -91,18 +91,18 @@ main {
 
 li.desc {
   max-height: 17vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
 }
 
 li.desc::-webkit-scrollbar {
   width: 4px;
-  background-color: transparent;
+  background-color: rgba(200, 200, 200, .6);
 }
 
 li.desc::-webkit-scrollbar-thumb {
   background: #030303;
-  border-radius: 2px;
+  border-radius: 0 !important;
 }
 
 #description {
@@ -158,8 +158,9 @@ li.desc::-webkit-scrollbar-thumb {
 }
 
 #main-content.on-result #_form {
-  height: 10.5vh;
+  height: 5vh;
   width: 45vw;
+  margin-bottom: 7vh;
 }
 
 input[type="text"] {
@@ -180,6 +181,7 @@ input[type="text"] {
 }
 
 #main-content.on-result input[type="text"] {
+  padding: 0.7em 1.2em;
   font-size: 9px;
   width: 35vw;
 }
@@ -281,11 +283,27 @@ input[type="submit"]:hover {
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  width: 30%;
+  width: 59%;
   flex-wrap: wrap;
   align-self: flex-end;
 }
 
-.coin {
+.coin, .empty-coin, .coin.full {
   d: path('M10, 0, 20, 10, 10, 20, 0, 10Z') !important;
+}
+
+.coin.half {
+  d: path('M10, 0, 10, 10, 10, 20, 0, 10Z') !important;
+}
+
+.coin.third {
+  d: path('M5, 6, 5, 10, 6, 16, 0, 10Z') !important;
+}
+
+.coin.three-quarter {
+  d: path('M10, 0, 13, 10, 10, 20, 0, 10Z') !important;
+}
+
+.coin.almost-there {
+  d: path('M7, 4, 19, 11, 10, 20, 0, 10Z') !important;
 }

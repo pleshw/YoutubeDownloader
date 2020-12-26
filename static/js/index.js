@@ -33,9 +33,13 @@ class ServerInfo {
   set url(val) { this._url = val }
 
 
-  set rating(val) { this._rating = val }
+  set rating(val) {
+    this._rating = parseFloat(val.toFixed(1))
+    updateRating(this._rating)
+  }
+
   set title(val) {
-    var reg = /\(([^)]+)\)/;
+    var reg = /\(([^)]+)\)/gm;
     var formatted = val.split('-');
 
     if (formatted.length > 1)
@@ -44,17 +48,17 @@ class ServerInfo {
       this._title = formatted[0].trim().replace(reg, '')
 
 
-    updateTitle(this._title)
+    updateElementInfo(this._title, 'title')
   }
 
   set author(val) {
     this._author = val.split('-')[0].trim()
-    updateAuthor(this._author)
+    updateElementInfo(this._author, 'author')
   }
 
   set description(val) {
     this._description = val
-    updateDescription(this._description)
+    updateElementInfo(this._description, 'description')
   }
 
   set thumbnail_url(val) {
@@ -65,6 +69,45 @@ class ServerInfo {
 
 var serverInfo = new ServerInfo();
 
+function updateRating(rate) {
+  // Recebendo todas as moedinhas
+  var coins = document.getElementsByClassName('coin');
+
+  // Limpando a avaliação anterior
+  for (var i = 0; i < coins.length; ++i) {
+    coins[i].classList.remove('third');
+    coins[i].classList.remove('half');
+    coins[i].classList.remove('three-quarter');
+    coins[i].classList.remove('almost-there');
+    coins[i].classList.remove('full');
+    coins[i].setAttribute('fill', 'rgba(0,0,0, 0)')
+  }
+
+  // Preenchendo os pontos que devem ser preenchidos completamente
+  var rateFloor = Math.floor(rate);
+  var lastCoin = 0;
+  for (var i = 0; i < rateFloor; ++i, ++lastCoin) {
+    coins[i].classList.add('full');
+    coins[i].setAttribute('fill', 'rgba(250,200,0, 1)')
+  }
+
+  // Avaliando quanto o vídeo merece do ultimo ponto
+  var lastCoinThreshold = (getDecimal(rate).toFixed(1) * 10)
+  if (lastCoinThreshold != 0) {
+    if (lastCoinThreshold <= 3) {
+      coins[lastCoin].classList.add('third');
+    } else if (lastCoinThreshold <= 4) {
+      coins[lastCoin].classList.add('half');
+    } else if (lastCoinThreshold <= 7) {
+      coins[lastCoin].classList.add('three-quarter');
+    } else if (lastCoinThreshold <= 8) {
+      coins[lastCoin].classList.add('almost-there');
+    } else {
+      coins[lastCoin].classList.add('full');
+    }
+    coins[lastCoin].setAttribute('fill', 'rgba(250,200,0, 1)')
+  }
+}
 
 function updateThumbnail(src) {
   document
@@ -79,17 +122,10 @@ function updateThumbnail(src) {
   document.getElementById('main-content').classList.add('on-result')
 }
 
-function updateAuthor(val) {
-  document.getElementById('author').innerHTML = val;
+function updateElementInfo(val, elementId) {
+  document.getElementById(elementId).innerHTML = val;
 }
 
-function updateTitle(val) {
-  document.getElementById('title').innerHTML = val;
-}
-
-function updateDescription(val) {
-  document.getElementById('description').innerHTML = val
-}
 
 const responseUpdating =
   () =>
@@ -146,25 +182,7 @@ const requestVideo =
       return
   }
 
-// function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-//   const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
-//   return {
-//     x: centerX + (radius * Math.cos(angleInRadians)),
-//     y: centerY + (radius * Math.sin(angleInRadians))
-//   };
-// }
 
-// function polygon(centerX, centerY, points, radius) {
-//   const degreeIncrement = 360 / (points);
-//   const d = new Array(points).fill('foo').map((p, i) => {
-//     const point = polarToCartesian(centerX, centerY, radius, degreeIncrement * i);
-//     return `${ point.x },${ point.y }`;
-//   });
-//   return `M${ d }Z`;
-// }
-
-// (function () {
-//   console.log(polygon(15, 15, 4, 15));
-//   for (var coin of document.getElementsByClassName('coinPath'))
-//     coin.setAttribute('d', polygon(15, 15, 4, 15))
-// })();
+function getDecimal(n) {
+  return (n - Math.floor(n));
+}
